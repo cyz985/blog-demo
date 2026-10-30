@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS public.posts (
     cover_url       TEXT,                                    -- 封面图（Supabase Storage URL）
     tags            TEXT[] DEFAULT '{}',                     -- 标签数组
     category_id     UUID REFERENCES public.categories(id) ON DELETE SET NULL,
-    owner_id        UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+    owner_id        UUID NOT NULL DEFAULT auth.uid() REFERENCES auth.users(id) ON DELETE CASCADE,
     views_count     INTEGER NOT NULL DEFAULT 0,              -- 阅读次数
     is_published    BOOLEAN NOT NULL DEFAULT true,
     created_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
