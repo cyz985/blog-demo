@@ -18,7 +18,8 @@ import { ProfilePage } from '@/pages/ProfilePage'
 export default function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      {/* basename 跟随 vite.config.ts 的 base，保证 GitHub Pages 子路径 /blog-demo/ 下路由正常 */}
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route element={<Layout />}>
             {/* 公开路由 */}
